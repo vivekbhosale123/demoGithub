@@ -1,0 +1,139 @@
+1. What are the steps to connect with JDBC?
+➔
+1. Load Driver class Class.forName(“com.mysql.jdbc.Driver”);
+2. Establish Connection
+Connection 
+connection=DriverManager.getConnection(“jdbc:mysql://localhost
+:3306/db_name”, “user_name”, “password”);
+3. Create Statement
+4. Execute Query
+5. Close Database connection (Optional)
+
+
+2. Differentiate Primary Key, Unique Key and Foreign key.
+➔ PRI: For PRIMARY:
+
+1. It is also a set of one or more columns of a table to uniquely identify 
+the record.
+2. A table can have only one PRIMARY key.
+3. It is quite like UNIQUE key to allow unique values but does not 
+allow any null value.
+UNI: For UNIQUE:
+1. It is a set of one or more columns of a table to uniquely identify the 
+record.
+2. A table can have multiple UNIQUE key.
+3. It is quite like primary key to allow unique values but can accept null 
+value which primary key does not.
+
+MUL: For MULTIPLE:
+
+1. It is also a set of one or more columns of a table which does not 
+identify the record uniquely.
+2. A table can have more than one MULTIPLE keys.
+3. It can be created in table on index or foreign key adding, it allows 
+null value.
+4. It allows duplicate entries in column.
+5. If we do not specify MUL column type then it is quite like a normal 
+column but can allow null entries too hence; to restrict such entries 
+we need to specify it.
+6. If we add indexes on column or add foreign key then automatically 
+MUL key type added
+
+
+4. Explain Joins in SQL.
+➔ The SQL Join clause is used to combine records (rows) from two or 
+more tables
+In SQL there are 4 important Joins
+1. Inner Join- Common data from both table
+2. Left Outer Join- All Data from Left and common data from Right 
+table
+3. Right Outer Join- All data from Right table and common data from 
+Left table
+4. Full Outer Join- All Data from both tables, But MySQL does not 
+support to Full Outer Join. In MySQL we are using Left Outer & 
+Right Outer Union to achieve Full Outer Join.
+Joins in SQL
+
+
+5. How many Aggregate function in SQL?
+➔ In SQL 5 aggregate functions
+MIN, MAX, AVG, SUM & COUNT
+
+6. Write a SQL query to find second largest salary?
+➔ Second Largest Salary SELECT MAX(empsalary) FROM employee WHERE 
+empsalary NOT IN (SELECT MAX(empsalary) FROM employee)
+
+Second Largest Salary with Employee Name SELECT empname,empsalary FROM employee 
+WHERE empsalary = (SELECT MAX(empsalary) FROM employee 
+WHERE empsalary < (SELECT MAX(empsalary) FROM 
+employee));
+
+Third Largest Salary using LIMIT SELECT DISTINCT(empsalary) FROM employee ORDER BY 
+empsalary DESC LIMIT 2, 1;
+
+Nth Largest Salary using LIMIT SELECT DISTINCT(empsalary) FROM employee ORDER BY 
+empsalary DESC LIMIT n-1, 1;
+For Example- for 5th largest salary : LIMIT 4, 1;
+
+
+7. Differentiate Delete and Truncate.
+➔ Delete:
+1. The DELETE command deletes one or more existing records from 
+the table.
+2. We can restore any deleted row or multiple rows from the database 
+using the ROLLBACK command.
+3. The DELETE command performs slower
+4. The DELETE command is Data Manipulation Language Command.
+Truncate:
+1. The TRUNCATE Command deletes all the rows from the existing 
+table, leaving the row with the column names.
+2. We cannot restore all the deleted rows from the database using the 
+ROLLBACK command.
+3. The TRUNCATE command works faster
+4. The TRUNCATE command is a Data Definition Language 
+Command.
+
+
+8. What is Stored Procedure?
+➔ We are giving input parameter and stored procedure it will give us 
+output parameter. Example- For age calculation we are giving input 
+parameter as DOB and SP gives us output parameter as age.
+A stored procedure is a subroutine available to applications that access 
+a relational database management system (RDBMS). Such procedures 
+are stored in the database data dictionary. The sole disadvantage of 
+stored procedure is that it can be executed nowhere except in the 
+database and occupies more memory in the database server. It also 
+provides a sense of security and functionality as users who can't access 
+the data directly can be granted access via stored procedures.
+Syntax:
+Creating a Procedure -
+CREATE PROCEDURE procedure_name
+(parameter1 data_type, parameter2 data_type)
+AS
+BEGIN
+ — SQL statements to be executed
+END
+To Execute the procedureEXEC procedure_name parameter1_value, parameter2_value
+
+
+9. What is views?
+➔ A view in SQL is a virtual table based on the result-set of an SQL 
+statement. A view contains rows and columns, just like a real table. The 
+fields in a view are fields from one or more real tables in the database.
+To create the view, we can select the fields from one or more tables 
+present in the database.
+Example:
+Creating View from a single table
+CREATE VIEW employees AS 
+SELECT empname, empaddress
+FROM employee 
+WHERE empid < 5;
+
+
+10. What is index in SQL?
+➔ It is used to retrieve data from the database very fast. Indexes are special 
+lookup tables.
+An Index is used to speed up select queries and where clauses. 
+But it shows down the data input with insert and update 
+statements. Indexes can be created or dropped without 
+affecting the data.
